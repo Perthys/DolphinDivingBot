@@ -129,7 +129,9 @@ Players.PlayerAdded:Connect(function(Player)
 end)
 
 for Index2, Player2 in pairs (Players:GetPlayers()) do
-   Player2.Backpack:ChildAdded(function(_Instance)
+    if Player2:FindFirstChild("Backpack") then
+        
+   Player2.Backpack.ChildAdded:Connect(function(_Instance)
         if _Instance:IsA('Tool') then
             local Transmitter = _Instance:FindFirstChildOfClass('TouchTransmitter')
             
@@ -137,7 +139,8 @@ for Index2, Player2 in pairs (Players:GetPlayers()) do
                 Transmitter:Destroy()
             end
         end
-    end)
+   end)
+    end
 end
 
 local function _CharacterAdded(_Character)
